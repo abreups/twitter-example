@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Beginning Backbone Twitter Example</title>
+	<link rel='stylesheet' href='css/metro-bootstrap.css'>
+	<!-- any other CSS here -->
+</head>
+<body class='metrouicss'>
+
+	<!-- HTML content and div placeholders -->
+	<div id='timeline' class='timeline-view'>
+		<h2>My Tweets</h2>
+	</div>
+
+	<!-- Handlebars template -->
+	<script type="text/x-handlebars-template" id="timeline-template">
+		<ul class='listview'>
+			{{#each tweet}}
+			<li>
+				<div class='icon'>
+					<img src='{{user.profile_image_url}}'></img>
+				</div>
+				<div class='data'>
+					<h4>{{user.name}}</h4>
+					<p>{{text}}</p>
+				</div>
+			</li>
+			{{/each}}
+		</ul>
+	</script>
+
+	<!-- External Libraries Includes -->
+	<!-- Your Utility Library -->
+	<script src="js/external/underscore.js"></script>
+	<!-- Your Selector Engine -->
+	<script src="js/external/jquery-1.11.1.js"></script>
+	<!-- Backbone library -->
+	<script src="js/external/backbone.js"></script>
+	<!-- Templating? library -->
+	<script src="js/external/handlebars-v1.3.0.js"></script>
+
+	<!-- Model -->
+	<script src="js/app/model/Tweet.js"></script>
+
+	<!-- Collections -->
+	<script src="js/app/collection/Timeline.js"></script>
+
+	<!-- View -->
+	<script src="js/app/view/TimelineView.js"></script>
+
+	<!-- Router -->
+	<script src="js/app/router/AppRouter.js"></script>
+
+	<!-- The 'main' for this app -->
+	<script src="js/app/app.js"></script>
+
+</body>
+</html>
+
