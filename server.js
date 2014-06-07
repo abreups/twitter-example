@@ -6,14 +6,15 @@ var client = null;
 
 function connectToTwitter(){
 	client = new Twit({
-		consumer_key:	'<your consumer key>',
-		consumer_secret:	'<your consumer secret>',
-		access_token:	'<your access token>',
-		access_token_secret:	'<your access token secret>'
+		consumer_key:	'',
+		consumer_secret:	'',
+		access_token:	'',
+		access_token_secret:	''
 	});
 }
 // get the app to connect to twitter
-connectToTwitter();
+resp = connectToTwitter();
+console.log(resp);
 
 
 //additional setup to allow CORS requests
@@ -36,6 +37,20 @@ app.use(bodyParser());
 app.use(express.static('.')); // index.html está no mesmo dir que server.js
 app.get('/', function(req, res) {
 	res.sendfile('index.html');
+});
+
+// Returns the twitter timeline for the current user
+app.get('/timeline', function(request, response) {
+	console.log('Entrou em /timeline');
+	response.header('Access-Control-Allow-Origin', '*');
+	client.get('statuses/home_timeline', {}, function(err, reply) {
+		if(err) {
+			response.send(404);
+		}
+		if(reply) {
+			response.json(reply);
+		}
+	});
 });
 
 
